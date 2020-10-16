@@ -5,11 +5,24 @@ namespace TinyCommerce.Modules.Customers.Application.CustomerRegistrations.GetCu
 {
     public class GetCustomerRegistrationQuery : IQuery<CustomerRegistrationDto>
     {
-        public GetCustomerRegistrationQuery(Guid customerRegistrationId)
+        public Guid? CustomerRegistrationId { get; private set; }
+
+        public string Email { get; private set; }
+
+        public static GetCustomerRegistrationQuery ByEmail(string email)
         {
-            CustomerRegistrationId = customerRegistrationId;
+            return new GetCustomerRegistrationQuery
+            {
+                Email = email
+            };
         }
 
-        public Guid CustomerRegistrationId { get; }
+        public static GetCustomerRegistrationQuery ById(Guid id)
+        {
+            return new GetCustomerRegistrationQuery
+            {
+                CustomerRegistrationId = id
+            };
+        }
     }
 }

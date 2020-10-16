@@ -1,6 +1,7 @@
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +13,7 @@ using TinyCommerce.Modules.Customers.Infrastructure.Configuration;
 using TinyCommerce.Web.Configuration.Emails;
 using TinyCommerce.Web.Configuration.Logging;
 using TinyCommerce.Web.Configuration.Modules;
+using TinyCommerce.Web.Core.Mvc.Transformers;
 
 namespace TinyCommerce.Web
 {
@@ -32,7 +34,11 @@ namespace TinyCommerce.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddRazorPages();
+                .AddRazorPages()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer()));
+                });
         }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)

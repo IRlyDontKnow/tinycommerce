@@ -5,16 +5,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using TinyCommerce.Modules.Customers.Application.Contracts;
 using TinyCommerce.Modules.Customers.Application.CustomerRegistrations.RegisterNewCustomer;
 
-namespace TinyCommerce.Web.Pages.Security
+namespace TinyCommerce.Web.Pages.Registration
 {
-    public class Register : PageModel
+    public class Index : PageModel
     {
         private readonly ICustomersModule _customersModule;
 
-        public Register(ICustomersModule customersModule)
+        public Index(ICustomersModule customersModule)
         {
             _customersModule = customersModule;
         }
+
 
         [BindProperty]
         public RegisterCustomerRequest FormData { get; set; }
@@ -38,16 +39,19 @@ namespace TinyCommerce.Web.Pages.Security
                 FormData.LastName
             ));
 
-            return Page();
+            return RedirectToPage("/Registration/Confirm", new
+            {
+                email = FormData.Email
+            });
         }
-    }
 
-    public class RegisterCustomerRequest
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string PasswordConfirmation { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public class RegisterCustomerRequest
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+            public string PasswordConfirmation { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
     }
 }

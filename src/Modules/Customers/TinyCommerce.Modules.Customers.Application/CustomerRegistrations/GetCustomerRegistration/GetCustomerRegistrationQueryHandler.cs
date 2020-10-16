@@ -22,7 +22,8 @@ namespace TinyCommerce.Modules.Customers.Application.CustomerRegistrations.GetCu
         )
         {
             var connection = _connectionFactory.GetOpenConnection();
-            var sql = $@"
+            var builder = new SqlBuilder();
+            var template = builder.AddTemplate($@"
                 SELECT
                     id AS {nameof(CustomerRegistrationDto.Id)},
                     email AS {nameof(CustomerRegistrationDto.Email)},
@@ -32,15 +33,22 @@ namespace TinyCommerce.Modules.Customers.Application.CustomerRegistrations.GetCu
                     activation_code As {nameof(CustomerRegistrationDto.ActivationCode)},
                     registration_date As {nameof(CustomerRegistrationDto.RegistrationDate)}
                 FROM customers.customer_registration
-                WHERE id = @CustomerRegistrationId
-            ";
+                /**where**/
+            ");
+
+            if (!string.IsNullOrEmpty(query.Email))
+            {
+                builder.Where("email = @Email", new {query.Email});
+            }
+
+            if (query.CustomerRegistrationId.HasValue)
+            {
+                builder.Where("id = @CustomerRegistrationId", new {query.CustomerRegistrationId});
+            }
 
             return await connection.QueryFirstOrDefaultAsync<CustomerRegistrationDto>(
-                sql,
-                new
-                {
-                    query.CustomerRegistrationId
-                }
+                template.RawSql,
+                template.Parameters
             );
         }
     }

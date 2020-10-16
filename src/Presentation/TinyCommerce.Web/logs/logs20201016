@@ -44,3 +44,11 @@
 {"@t":"2020-10-16T16:18:01.6698423Z","@mt":"Logger configured!","Presentation":"Web"}
 {"@t":"2020-10-16T16:18:02.9433983Z","@mt":"Starting quartz...","Module":"Customers"}
 {"@t":"2020-10-16T16:18:08.1799323Z","@mt":"Send email. To={Email}, Subject={Subject}, Content={Content}","Email":"mariusz.turek000@gmail.com","Subject":"TinyCommerce account activation","Content":"Your activation code is: M2BN9T","Presentation":"Web"}
+{"@t":"2020-10-16T16:40:42.4992634Z","@mt":"Logger configured!","Presentation":"Web"}
+{"@t":"2020-10-16T16:40:44.0638142Z","@mt":"Starting quartz...","Module":"Customers"}
+{"@t":"2020-10-16T16:44:20.9536586Z","@mt":"Logger configured!","Presentation":"Web"}
+{"@t":"2020-10-16T16:44:22.4959825Z","@mt":"Starting quartz...","Module":"Customers"}
+{"@t":"2020-10-16T16:53:20.7682363Z","@mt":"Logger configured!","Presentation":"Web"}
+{"@t":"2020-10-16T16:53:22.4687369Z","@mt":"Starting quartz...","Module":"Customers"}
+{"@t":"2020-10-16T17:02:45.3546268Z","@mt":"Logger configured!","Presentation":"Web"}
+{"@t":"2020-10-16T17:02:46.5696310Z","@mt":"Starting quartz...","Module":"Customers"}

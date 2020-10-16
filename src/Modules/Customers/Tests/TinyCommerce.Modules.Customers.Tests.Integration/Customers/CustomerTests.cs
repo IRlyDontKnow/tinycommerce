@@ -45,9 +45,9 @@ namespace TinyCommerce.Modules.Customers.Tests.Integration.Customers
                 CustomerSampleData.LastName
             ));
 
-            var registration = await CustomersModule.ExecuteQueryAsync(new GetCustomerRegistrationQuery(
-                CustomerSampleData.Id
-            ));
+            var registration = await CustomersModule.ExecuteQueryAsync(
+                GetCustomerRegistrationQuery.ById(CustomerSampleData.Id)
+            );
 
             await CustomersModule.ExecuteCommandAsync(new ConfirmRegistrationCommand(
                 CustomerSampleData.Id,
