@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.0.35" />
+      <PackageReference Include="FluentValidation" Version="9.2.2" />
+      <PackageReference Include="MediatR" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\BuildingBlocks\TinyCommerce.BuildingBlocks.Application\TinyCommerce.BuildingBlocks.Application.csproj" />
+      <ProjectReference Include="..\Tests\TinyCommerce.Modules.Customers.Tests.Domain\TinyCommerce.Modules.Customers.Tests.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

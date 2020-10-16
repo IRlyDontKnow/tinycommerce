@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\BuildingBlocks\TinyCommerce.BuildingBlocks.Domain\TinyCommerce.BuildingBlocks.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Categories\Rules" />
+      <Folder Include="Products\Events" />
+      <Folder Include="Products\Rules" />
+    </ItemGroup>
+
+</Project>

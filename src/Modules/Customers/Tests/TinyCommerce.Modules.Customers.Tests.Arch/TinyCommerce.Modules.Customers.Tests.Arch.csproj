@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="6.0.0" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+      <PackageReference Include="NetArchTest.Rules" Version="1.2.6" />
+      <PackageReference Include="NUnit" Version="3.12.0" />
+      <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\TinyCommerce.Modules.Customers.Application\TinyCommerce.Modules.Customers.Application.csproj" />
+      <ProjectReference Include="..\..\TinyCommerce.Modules.Customers.Domain\TinyCommerce.Modules.Customers.Domain.csproj" />
+      <ProjectReference Include="..\..\TinyCommerce.Modules.Customers.Infrastructure\TinyCommerce.Modules.Customers.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>
