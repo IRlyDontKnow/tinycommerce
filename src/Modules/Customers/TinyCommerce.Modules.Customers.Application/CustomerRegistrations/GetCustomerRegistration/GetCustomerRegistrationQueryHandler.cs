@@ -6,8 +6,8 @@ using TinyCommerce.Modules.Customers.Application.Configuration;
 
 namespace TinyCommerce.Modules.Customers.Application.CustomerRegistrations.GetCustomerRegistration
 {
-    public class
-        GetCustomerRegistrationQueryHandler : IQueryHandler<GetCustomerRegistrationQuery, CustomerRegistrationDto>
+    internal class GetCustomerRegistrationQueryHandler :
+        IQueryHandler<GetCustomerRegistrationQuery, CustomerRegistrationDto>
     {
         private readonly IDbConnectionFactory _connectionFactory;
 

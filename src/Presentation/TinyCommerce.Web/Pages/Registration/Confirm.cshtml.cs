@@ -35,7 +35,7 @@ namespace TinyCommerce.Web.Pages.Registration
                 return Page();
 
             var customerRegistration = await _customersModule.ExecuteQueryAsync(
-                GetCustomerRegistrationQuery.ByEmail(Email)
+                new GetCustomerRegistrationQuery(email: FormData.Email)
             );
 
             if (null == customerRegistration)

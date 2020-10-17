@@ -23,6 +23,7 @@ namespace TinyCommerce.Modules.Customers.Infrastructure.Purging.PurgeModule
             {
                 "customers.customer_registration",
                 "customers.customer",
+                "customers.password_reminder",
                 "customers.internal_commands",
                 "customers.outbox_messages"
             });

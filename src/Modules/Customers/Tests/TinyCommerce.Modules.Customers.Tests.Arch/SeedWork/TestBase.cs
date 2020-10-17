@@ -30,7 +30,7 @@ namespace TinyCommerce.Modules.Customers.Tests.Arch.SeedWork
 
             AssertFailingTypes(failingTypes);
         }
-        
+
         protected static void AssertFailingTypes(IEnumerable<Type> types)
         {
             Assert.That(types, Is.Null.Or.Empty);

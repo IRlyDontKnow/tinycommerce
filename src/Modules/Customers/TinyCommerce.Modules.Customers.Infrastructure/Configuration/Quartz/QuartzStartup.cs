@@ -5,6 +5,7 @@ using Quartz.Logging;
 using Serilog;
 using TinyCommerce.Modules.Customers.Infrastructure.Configuration.Processing.InternalCommands;
 using TinyCommerce.Modules.Customers.Infrastructure.Configuration.Processing.Outbox;
+using TinyCommerce.Modules.Customers.Infrastructure.PasswordReminders.CleanupExpiredPasswordReminders;
 
 namespace TinyCommerce.Modules.Customers.Infrastructure.Configuration.Quartz
 {
@@ -32,6 +33,23 @@ namespace TinyCommerce.Modules.Customers.Infrastructure.Configuration.Quartz
 
             ScheduleOutboxProcessing();
             ScheduleProcessInternalCommands();
+            SchedulePasswordRemindersCleanup();
+        }
+
+        private static void SchedulePasswordRemindersCleanup()
+        {
+            var job = JobBuilder.Create<CleanupPasswordRemindersJob>()
+                .Build();
+
+            var trigger = TriggerBuilder
+                .Create()
+                .StartNow()
+                .WithCronSchedule("0 0 12 * * ?")
+                .Build();
+
+            _scheduler.ScheduleJob(job, trigger)
+                .GetAwaiter()
+                .GetResult();
         }
 
         private static void ScheduleOutboxProcessing()
