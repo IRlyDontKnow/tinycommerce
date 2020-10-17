@@ -1,4 +1,6 @@
 using Autofac;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -33,12 +35,24 @@ namespace TinyCommerce.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/login";
+                    options.LogoutPath = "/logout";
+                });
+
             services
                 .AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.Add(new PageRouteTransformerConvention(new SlugifyParameterTransformer()));
-                });
+
+                    // Front authorization
+                    options.Conventions.AuthorizeFolder("/Account");
+                    options.Conventions.AllowAnonymousToPage("/Security/Login");
+                })
+                .AddFluentValidation(options => { options.RegisterValidatorsFromAssembly(typeof(Startup).Assembly); });
         }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)

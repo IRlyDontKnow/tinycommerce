@@ -43,18 +43,24 @@
                 </div>
             </div>
         </div>
-
         <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary" asp-page="/Registration/Index">
-                        <strong>Register</strong>
-                    </a>
-                    <a asp-page="/Security/Login" class="button is-light">
-                        Log in
-                    </a>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" asp-page="/Registration/Index">
+                            <strong>Register</strong>
+                        </a>
+                        <a asp-page="/Security/Login" class="button is-light">
+                            Log in
+                        </a>
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                @await Component.InvokeAsync("UserMenu")
+            }
         </div>
     </div>
 </nav>

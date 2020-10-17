@@ -2,8 +2,32 @@
 @model TinyCommerce.Web.Pages.Security.Login
 
 <div class="box">
-    <h2 class="is-size-4">Login</h2>
+    <h2 class="is-size-4 mb-4">Login</h2>
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="notification is-danger is-light">
+            @Model.ErrorMessage
+        </div>
+    }
     <form method="post">
-        
+        <div class="field">
+            <label class="label">E-mail address</label>
+            <div class="control">
+                <input class="input" type="text" asp-for="FormData.Email">
+            </div>
+            <span class="help is-danger" asp-validation-for="FormData.Email"></span>
+        </div>
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+                <input class="input" type="password" asp-for="FormData.Password">
+            </div>
+            <span class="help is-danger" asp-validation-for="FormData.Password"></span>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link" type="submit">Login</button>
+            </div>
+        </div>
     </form>
 </div>
