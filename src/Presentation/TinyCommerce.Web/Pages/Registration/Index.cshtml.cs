@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TinyCommerce.Modules.Customers.Application.Contracts;
@@ -52,6 +53,18 @@ namespace TinyCommerce.Web.Pages.Registration
             public string PasswordConfirmation { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
+        }
+
+        public class RegisterCustomerRequestValidator : AbstractValidator<RegisterCustomerRequest>
+        {
+            public RegisterCustomerRequestValidator()
+            {
+                RuleFor(x => x.Email).NotEmpty().EmailAddress();
+                RuleFor(x => x.Password).NotEmpty();
+                RuleFor(x => x.PasswordConfirmation).Equal(x => x.Password);
+                RuleFor(x => x.FirstName).NotEmpty();
+                RuleFor(x => x.LastName).NotEmpty();
+            }
         }
     }
 }

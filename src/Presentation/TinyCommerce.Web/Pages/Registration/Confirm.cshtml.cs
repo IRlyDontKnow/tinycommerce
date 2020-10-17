@@ -30,7 +30,7 @@ namespace TinyCommerce.Web.Pages.Registration
         public async Task<IActionResult> OnPost()
         {
             FormData.Email = Email;
-
+            
             if (!ModelState.IsValid)
                 return Page();
 
@@ -61,7 +61,7 @@ namespace TinyCommerce.Web.Pages.Registration
     {
         public ConfirmRegistrationRequestValidator()
         {
-            RuleFor(x => x.Email).NotEmpty().EmailAddress();
+            RuleFor(x => x.Email).EmailAddress();
             RuleFor(x => x.ActivationCode).NotEmpty();
         }
     }

@@ -7,7 +7,6 @@ using TinyCommerce.Modules.Customers.Application.CustomerRegistrations.RegisterN
 using TinyCommerce.Modules.Customers.Application.Customers.ChangePassword;
 using TinyCommerce.Modules.Customers.Application.Customers.CreateCustomer;
 using TinyCommerce.Modules.Customers.Application.Customers.GetCustomer;
-using TinyCommerce.Modules.Customers.Domain.Customers.Rules;
 using TinyCommerce.Modules.Customers.Tests.Integration.SeedWork;
 
 namespace TinyCommerce.Modules.Customers.Tests.Integration.Customers

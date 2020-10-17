@@ -25,6 +25,9 @@ namespace TinyCommerce.Web.Pages.Security
         [TempData]
         public string ErrorMessage { get; set; }
 
+        [TempData(Key = "LoginInfo")]
+        public string InfoMessage { get; set; }
+
         public IActionResult OnGet()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
