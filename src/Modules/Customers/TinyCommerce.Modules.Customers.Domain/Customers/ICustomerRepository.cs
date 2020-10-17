@@ -7,5 +7,7 @@ namespace TinyCommerce.Modules.Customers.Domain.Customers
         Task AddAsync(Customer customer);
 
         Task<Customer> GetByIdAsync(CustomerId id);
+        
+        Task<Customer> GetByEmailAsync(string email);
     }
 }

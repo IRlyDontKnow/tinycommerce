@@ -1,0 +1,15 @@
+﻿@model TinyCommerce.Web.ViewComponents.UserMenuViewModel
+
+<div class="navbar-item has-dropdown is-hoverable">
+    <a class="navbar-link">
+        @Model.CustomerFullName
+    </a>
+    <div class="navbar-dropdown">
+        <a class="navbar-item" asp-page="/Account/Index">
+            Account
+        </a>
+        <a class="navbar-item" asp-page="/Security/Logout">
+            Logout
+        </a>
+    </div>
+</div>

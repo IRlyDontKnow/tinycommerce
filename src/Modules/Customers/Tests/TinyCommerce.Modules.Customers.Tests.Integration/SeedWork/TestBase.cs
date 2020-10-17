@@ -5,7 +5,9 @@ using Npgsql;
 using NSubstitute;
 using NUnit.Framework;
 using Serilog;
+using TinyCommerce.BuildingBlocks.Application.DataAccess;
 using TinyCommerce.BuildingBlocks.Application.Emails;
+using TinyCommerce.BuildingBlocks.Domain;
 using TinyCommerce.BuildingBlocks.Infrastructure.DataAccess;
 using TinyCommerce.BuildingBlocks.Testing.Integration;
 using TinyCommerce.Modules.Customers.Application.Contracts;
@@ -20,6 +22,7 @@ namespace TinyCommerce.Modules.Customers.Tests.Integration.SeedWork
         protected ICustomersModule CustomersModule;
         protected ILogger Logger;
         protected IEmailSender EmailSender;
+        protected IDbConnectionFactory ConnectionFactory;
 
         [SetUp]
         public async Task BeforeEachTest()
@@ -32,6 +35,7 @@ namespace TinyCommerce.Modules.Customers.Tests.Integration.SeedWork
 
             Logger = Substitute.For<ILogger>();
             EmailSender = Substitute.For<IEmailSender>();
+            ConnectionFactory = new PostgresConnectionFactory(connectionString);
 
             CustomersStartup.Initialize(connectionString, Logger, EmailSender);
             CustomersModule = new CustomersModule();

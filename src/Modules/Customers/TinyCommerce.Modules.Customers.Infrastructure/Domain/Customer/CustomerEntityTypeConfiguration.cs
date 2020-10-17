@@ -13,7 +13,7 @@ namespace TinyCommerce.Modules.Customers.Infrastructure.Domain.Customer
 
             builder.HasKey(x => x.Id).HasName("id");
             builder.Property(x => x.Id).HasColumnName("id");
-            builder.Property<string>("_email").HasColumnName("email");
+            builder.Property(x => x.Email).HasColumnName("email");
             builder.Property<string>("_password").HasColumnName("password");
             builder.Property<string>("_firstName").HasColumnName("first_name");
             builder.Property<string>("_lastName").HasColumnName("last_name");

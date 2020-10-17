@@ -23,9 +23,9 @@ namespace TinyCommerce.Modules.Customers.Tests.Integration.CustomerRegistrations
                 CustomerSampleData.LastName
             ));
 
-            var customerRegistration = await CustomersModule.ExecuteQueryAsync(new GetCustomerRegistrationQuery(
-                CustomerSampleData.Id
-            ));
+            var customerRegistration = await CustomersModule.ExecuteQueryAsync(
+                new GetCustomerRegistrationQuery(CustomerSampleData.Id)
+            );
 
             Assert.That(customerRegistration, Is.Not.Null);
 

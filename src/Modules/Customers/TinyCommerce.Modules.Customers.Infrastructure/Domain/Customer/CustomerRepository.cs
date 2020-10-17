@@ -23,5 +23,10 @@ namespace TinyCommerce.Modules.Customers.Infrastructure.Domain.Customer
         {
             return await _context.Customers.FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<CustomerDomainModel> GetByEmailAsync(string email)
+        {
+            return await _context.Customers.FirstOrDefaultAsync(x => x.Email == email);
+        }
     }
 }

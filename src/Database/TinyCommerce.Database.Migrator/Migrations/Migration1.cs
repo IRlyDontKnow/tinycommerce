@@ -29,6 +29,14 @@ namespace TinyCommerce.Database.Migrator.Migrations
                 .WithColumn("last_name").AsString().NotNullable()
                 .WithColumn("registration_date").AsDateTime().NotNullable();
 
+            Create.Table("password_reminder")
+                .InSchema("customers")
+                .WithColumn("id").AsGuid().PrimaryKey().Unique()
+                .WithColumn("email").AsString().NotNullable()
+                .WithColumn("code").AsString().NotNullable()
+                .WithColumn("requested_at").AsDateTime().NotNullable()
+                .WithColumn("expires_at").AsDateTime2().NotNullable();
+
             Create.Table("outbox_messages")
                 .InSchema("customers")
                 .WithColumn("id").AsGuid().PrimaryKey().Unique()
@@ -49,6 +57,7 @@ namespace TinyCommerce.Database.Migrator.Migrations
 
         public override void Down()
         {
+            Delete.Schema("customers");
             Delete.Table("customer_registration").InSchema("customers");
             Delete.Table("customer").InSchema("customers");
             Delete.Table("outbox_messages").InSchema("customers");
