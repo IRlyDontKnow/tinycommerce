@@ -9,7 +9,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Categories\Rules" />
       <Folder Include="Products\Events" />
       <Folder Include="Products\Rules" />
     </ItemGroup>

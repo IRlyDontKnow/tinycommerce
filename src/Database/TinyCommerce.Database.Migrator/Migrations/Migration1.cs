@@ -58,10 +58,6 @@ namespace TinyCommerce.Database.Migrator.Migrations
         public override void Down()
         {
             Delete.Schema("customers");
-            Delete.Table("customer_registration").InSchema("customers");
-            Delete.Table("customer").InSchema("customers");
-            Delete.Table("outbox_messages").InSchema("customers");
-            Delete.Table("internal_commands").InSchema("customers");
         }
     }
 }

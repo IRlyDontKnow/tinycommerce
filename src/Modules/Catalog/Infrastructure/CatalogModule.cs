@@ -1,5 +1,8 @@
 ﻿using System.Threading.Tasks;
+using Autofac;
+using MediatR;
 using TinyCommerce.Modules.Catalog.Application.Contracts;
+using TinyCommerce.Modules.Catalog.Infrastructure.Configuration;
 
 namespace TinyCommerce.Modules.Catalog.Infrastructure
 {
@@ -7,11 +10,18 @@ namespace TinyCommerce.Modules.Catalog.Infrastructure
     {
         public async Task ExecuteCommandAsync(ICommand command)
         {
+            var scope = CatalogCompositionRoot.BeginLifetimeScope();
+            var mediator = scope.Resolve<IMediator>();
+
+            await mediator.Send(command);
         }
 
-        public async Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
+        public Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
         {
-            return default;
+            var scope = CatalogCompositionRoot.BeginLifetimeScope();
+            var mediator = scope.Resolve<IMediator>();
+
+            return mediator.Send(query);
         }
     }
 }

@@ -4,4 +4,18 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\BuildingBlocks\TinyCommerce.BuildingBlocks.Testing.Integration\TinyCommerce.BuildingBlocks.Testing.Integration.csproj" />
+      <ProjectReference Include="..\..\Application\TinyCommerce.Modules.Catalog.Application.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\TinyCommerce.Modules.Catalog.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+      <PackageReference Include="NSubstitute" Version="4.2.2" />
+      <PackageReference Include="NUnit" Version="3.12.0" />
+      <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+      <PackageReference Include="Serilog" Version="2.10.0" />
+    </ItemGroup>
+
 </Project>

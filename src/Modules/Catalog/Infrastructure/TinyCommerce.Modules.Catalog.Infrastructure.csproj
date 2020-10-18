@@ -6,12 +6,15 @@
 
     <ItemGroup>
       <PackageReference Include="Autofac" Version="6.0.0" />
+      <PackageReference Include="FluentValidation" Version="9.2.2" />
+      <PackageReference Include="FluentValidator" Version="2.0.4" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
       <PackageReference Include="Serilog" Version="2.10.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\BuildingBlocks\TinyCommerce.BuildingBlocks.Infrastructure\TinyCommerce.BuildingBlocks.Infrastructure.csproj" />
       <ProjectReference Include="..\Application\TinyCommerce.Modules.Catalog.Application.csproj" />
       <ProjectReference Include="..\Domain\TinyCommerce.Modules.Catalog.Domain.csproj" />
       <ProjectReference Include="..\Tests\TinyCommerce.Modules.Catalog.Tests.Unit.Domain\TinyCommerce.Modules.Catalog.Tests.Unit.Domain.csproj" />

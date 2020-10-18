@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using TinyCommerce.Modules.Catalog.Domain.Products;
 
 namespace TinyCommerce.Modules.Catalog.Infrastructure.Domain.Products
@@ -14,7 +15,8 @@ namespace TinyCommerce.Modules.Catalog.Infrastructure.Domain.Products
 
         public async Task AddAsync(Catalog.Domain.Products.Product product)
         {
-            await _context.Products.AddAsync(product);
+            throw new NotImplementedException();
+            // await _context.Products.AddAsync(product);
         }
     }
 }

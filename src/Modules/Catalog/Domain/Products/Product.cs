@@ -16,7 +16,7 @@ namespace TinyCommerce.Modules.Catalog.Domain.Products
         private string _code;
         private string _shortDescription;
         private string _fullDescription;
-        private List<ProductImage> _images;
+        // private List<ProductImage> _images;
         private List<ProductTranslation> _translations;
     }
 }
