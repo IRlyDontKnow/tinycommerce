@@ -1,0 +1,17 @@
+﻿.app-main {
+}
+
+
+.app-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  background-color: #FAFAFA;
+}
+
+.main-content {
+  margin-top: $navbar-height;
+  margin-left: $sidebar-width;
+  flex: 1;
+}

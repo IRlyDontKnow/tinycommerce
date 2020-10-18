@@ -5,8 +5,10 @@
   "author": "Mariusz Turek",
   "license": "MIT",
   "scripts": {
-    "front:build": "cross-env NODE_ENV=production webpack",
-    "front:dev": "cross-env NODE_ENV=development webpack --watch"
+    "front:build": "cross-env NODE_ENV=production webpack --config webpack.front.config.js",
+    "front:dev": "cross-env NODE_ENV=development webpack --watch --config webpack.front.config.js",
+    "admin:build": "cross-env NODE_ENV=production webpack --config webpack.admin.config.js",
+    "admin:dev": "cross-env NODE_ENV=development webpack --watch --config webpack.admin.config.js"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",

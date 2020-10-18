@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Formatting.Compact;
 using TinyCommerce.BuildingBlocks.Application.Emails;
+using TinyCommerce.Modules.BackOffice.Infrastructure.Configuration;
 using TinyCommerce.Modules.Catalog.Infrastructure.Configuration;
 using TinyCommerce.Modules.Customers.Infrastructure.Configuration;
 using TinyCommerce.Web.Configuration.Emails;
@@ -35,12 +36,31 @@ namespace TinyCommerce.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/login";
                     options.LogoutPath = "/logout";
+                })
+                .AddCookie("AdminCookie", options =>
+                {
+                    options.Cookie.Name = "tinycommerce_admin_auth";
+                    options.Cookie.HttpOnly = true;
+                    options.LoginPath = "/admin/login";
+                    options.LogoutPath = "/admin/logout";
                 });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy =>
+                {
+                    policy.AddAuthenticationSchemes("AdminCookie");
+                    policy.RequireAuthenticatedUser();
+                });
+            });
 
             services
                 .AddRazorPages()
@@ -51,6 +71,10 @@ namespace TinyCommerce.Web
                     // Front authorization
                     options.Conventions.AuthorizeFolder("/Account");
                     options.Conventions.AllowAnonymousToPage("/Security/Login");
+
+                    // Admin authorization
+                    options.Conventions.AuthorizeAreaFolder("Admin", "/", "Admin");
+                    options.Conventions.AllowAnonymousToAreaFolder("Admin", "/Security");
                 })
                 .AddFluentValidation(options => { options.RegisterValidatorsFromAssembly(typeof(Startup).Assembly); });
         }
@@ -98,6 +122,7 @@ namespace TinyCommerce.Web
             var emailSender = app.ApplicationServices.GetService<IEmailSender>();
 
             CustomersStartup.Initialize(connectionString, _logger, emailSender);
+            BackOfficeStartup.Initialize(connectionString, _logger);
             CatalogStartup.Initialize(connectionString, _logger);
         }
 

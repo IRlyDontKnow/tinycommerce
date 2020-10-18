@@ -1,0 +1,15 @@
+﻿.app-sidebar {
+  background-color: $sidebar-background-color;
+  border-right: $sidebar-right-border;
+  position: fixed;
+  margin-top: $navbar-height;
+  padding: 1rem 0;
+  top: 0;
+  bottom: 0;
+  width: $sidebar-width;
+}
+
+.app-sidebar .menu-label {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
