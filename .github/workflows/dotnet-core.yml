@@ -2,24 +2,39 @@ name: .NET Core
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, github-actions ]
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, github-actions ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13.0
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: tinycommerce_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.301
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.301
+      - name: Install dependencies
+        run: dotnet restore src/TinyCommerce.sln
+      - name: Run database migrations
+        run: dotnet run --project src/Database/TinyCommerce.Database.Migrator "Host=localhost;Username=postgres;Password=postgres;Database=tinycommerce_test"
+      - name: Test
+        run: dotnet test src/TinyCommerce.sln --no-restore --verbosity normal
+        env:
+          TinyCommerce_IntegrationTest_ConnectionString: "Host=localhost;Username=postgres;Password=postgres;Database=tinycommerce_test"
