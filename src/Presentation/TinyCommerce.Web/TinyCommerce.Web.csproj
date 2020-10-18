@@ -19,6 +19,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Modules\BackOffice\Application\TinyCommerce.Modules.BackOffice.Application.csproj" />
+      <ProjectReference Include="..\..\Modules\BackOffice\Infrastructure\TinyCommerce.Modules.BackOffice.Infrastructure.csproj" />
       <ProjectReference Include="..\..\Modules\Catalog\TinyCommerce.Modules.Catalog.Application\TinyCommerce.Modules.Catalog.Application.csproj" />
       <ProjectReference Include="..\..\Modules\Catalog\TinyCommerce.Modules.Catalog.Infrastructure\TinyCommerce.Modules.Catalog.Infrastructure.csproj" />
       <ProjectReference Include="..\..\Modules\Customers\TinyCommerce.Modules.Customers.Application\TinyCommerce.Modules.Customers.Application.csproj" />
@@ -68,7 +70,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Client\admin" />
       <Folder Include="logs" />
     </ItemGroup>
 

@@ -1,0 +1,14 @@
+﻿.app-header {
+  border-bottom: $navbar-bottom-border;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.app-header__brand-name {
+  color: #F76763;
+  font-size: 1.2rem;
+  font-weight: 600;
+}

@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "_MainLayout";
+
+    bool IsPageHeaderVisible()
+    {
+        if (ViewData.ContainsKey("ShowPageHeader") && !(bool) ViewData["ShowPageHeader"])
+        {
+            return false;
+        }
+
+        return IsSectionDefined("PageHeader") || ViewData.ContainsKey("PageTitle");
+    }
+}
+
+<div class="page">
+    @if (IsPageHeaderVisible())
+    {
+        <div class="page__header">
+            @if (IsSectionDefined("PageHeader"))
+            {
+                @await RenderSectionAsync("PageHeader")
+            }
+            else
+            {
+                @if (ViewData.ContainsKey("PageTitle"))
+                {
+                    <h1 class="page__header-title">
+                        @ViewData["PageTitle"]
+                    </h1>
+                }
+            }
+        </div>
+    }
+    <div class="page__content">
+        @RenderBody()
+    </div>
+</div>
