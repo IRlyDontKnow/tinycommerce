@@ -7718,12 +7718,18 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding: 1rem; }
 
 .page__header {
-  display: block;
-  margin-bottom: 1rem; }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 2rem; }
 
 .page__header-title {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 300; }
+
+.page__toolbar {
+  padding-left: 1rem;
+  margin-left: auto; }
 
 .app-header {
   border-bottom: 1px solid #e0e6ed;

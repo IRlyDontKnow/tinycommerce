@@ -17,9 +17,6 @@
       <ProjectReference Include="..\..\..\BuildingBlocks\TinyCommerce.BuildingBlocks.Infrastructure\TinyCommerce.BuildingBlocks.Infrastructure.csproj" />
       <ProjectReference Include="..\Application\TinyCommerce.Modules.Catalog.Application.csproj" />
       <ProjectReference Include="..\Domain\TinyCommerce.Modules.Catalog.Domain.csproj" />
-      <ProjectReference Include="..\Tests\TinyCommerce.Modules.Catalog.Tests.Unit.Domain\TinyCommerce.Modules.Catalog.Tests.Unit.Domain.csproj" />
-      <ProjectReference Include="..\TinyCommerce.Modules.Catalog.Application\TinyCommerce.Modules.Catalog.Application.csproj" />
-      <ProjectReference Include="..\TinyCommerce.Modules.Catalog.Domain\TinyCommerce.Modules.Catalog.Domain.csproj" />
     </ItemGroup>
 
 </Project>

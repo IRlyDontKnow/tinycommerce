@@ -1,0 +1,45 @@
+﻿@page "/admin/catalog/categories/{categoryId}/edit"
+@model TinyCommerce.Web.Areas.Admin.Pages.Catalog.Categories.Edit
+@{
+    ViewData["PageTitle"] = "Edit category";
+}
+
+<div class="box">
+    <form method="post">
+        <div class="field">
+            <label class="label">Slug</label>
+            <div class="control">
+                <input class="input" type="text" asp-for="FormData.Slug">
+            </div>
+            <span class="help is-danger" asp-validation-for="FormData.Slug"></span>
+        </div>
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" type="text" asp-for="FormData.Name">
+            </div>
+            <span class="help is-danger" asp-validation-for="FormData.Name"></span>
+        </div>
+        <div class="field">
+            <label class="label">Parent</label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select asp-for="FormData.ParentId" asp-items="Model.ParentCategoryOptions"></select>
+                </div>
+            </div>
+            <span class="help is-danger" asp-validation-for="FormData.ParentId"></span>
+        </div>
+        <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+                <textarea class="textarea" rows="4" asp-for="FormData.Description"></textarea>
+            </div>
+            <span class="help is-danger" asp-validation-for="FormData.Description"></span>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link" type="submit">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

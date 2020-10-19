@@ -14,7 +14,7 @@ namespace TinyCommerce.Database.Migrator.Migrations
                 .WithColumn("id").AsGuid().PrimaryKey().Unique()
                 .WithColumn("slug").AsString().NotNullable()
                 .WithColumn("name").AsString().NotNullable()
-                .WithColumn("description").AsString().NotNullable()
+                .WithColumn("description").AsString().Nullable()
                 .WithColumn("parent_id").AsGuid().Nullable()
                 .WithColumn("created_at").AsDateTime().NotNullable()
                 .WithColumn("updated_at").AsDateTime().Nullable();

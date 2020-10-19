@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="Dapper" Version="2.0.35" />
+      <PackageReference Include="Dapper.SqlBuilder" Version="2.0.35" />
       <PackageReference Include="FluentValidation" Version="9.2.2" />
       <PackageReference Include="MediatR" Version="9.0.0" />
     </ItemGroup>
@@ -13,7 +14,6 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\BuildingBlocks\TinyCommerce.BuildingBlocks.Application\TinyCommerce.BuildingBlocks.Application.csproj" />
       <ProjectReference Include="..\Domain\TinyCommerce.Modules.Catalog.Domain.csproj" />
-      <ProjectReference Include="..\TinyCommerce.Modules.Catalog.Domain\TinyCommerce.Modules.Catalog.Domain.csproj" />
     </ItemGroup>
 
 </Project>

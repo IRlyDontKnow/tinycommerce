@@ -1,0 +1,60 @@
+﻿@page "/admin/catalog/categories/{parentId?}"
+@model TinyCommerce.Web.Areas.Admin.Pages.Catalog.Categories.Index
+@{
+    ViewData["PageTitle"] = "Categories";
+    var createRouteParams = new Dictionary<string, string>();
+
+    if (Model.ParentId.HasValue)
+    {
+        createRouteParams.Add("parentId", Model.ParentId.Value.ToString());
+    }
+}
+
+@section PageToolbar
+{
+    <a class="button is-primary" asp-area="Admin" asp-page="/Catalog/Categories/Create" asp-all-route-data="createRouteParams">
+        Create
+    </a>
+}
+
+<div class="box">
+    <table class="table is-striped is-fullwidth is-hoverable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Slug</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.Categories.Count == 0)
+        {
+            <tr>
+                <td class="has-text-centered" colspan="4">No data available</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var category in Model.Categories)
+            {
+                <tr>
+                    <td>
+                        <a asp-area="Admin" asp-page="/Catalog/Categories/Index" asp-route-parentId="@category.Id">
+                            @category.Name
+                        </a>
+                    </td>
+                    <td>@category.Slug</td>
+                    <td>@category.Description</td>
+                    <td>
+                        <a class="button is-small is-link" asp-area="Admin" asp-page="/Catalog/Categories/Edit" asp-route-categoryId="@category.Id">
+                            Edit
+                        </a>
+                        <a class="button is-small is-danger" href="">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>

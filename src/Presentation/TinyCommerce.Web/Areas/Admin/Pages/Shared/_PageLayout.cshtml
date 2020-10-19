@@ -28,6 +28,12 @@
                         @ViewData["PageTitle"]
                     </h1>
                 }
+                @if (IsSectionDefined("PageToolbar"))
+                {
+                    <div class="page__toolbar">
+                        @await RenderSectionAsync("PageToolbar")
+                    </div>
+                }
             }
         </div>
     }

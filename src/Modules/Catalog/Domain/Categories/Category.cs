@@ -51,6 +51,38 @@ namespace TinyCommerce.Modules.Catalog.Domain.Categories
         private DateTime _createdAt;
         private DateTime? _updatedAt;
 
+        public void Edit(
+            string slug,
+            string name,
+            string description,
+            CategoryId parentId,
+            ICategoryCounter categoryCounter
+        )
+        {
+            // TODO: Add test
+            
+            if (slug != _slug)
+                CheckRule(new CategorySlugMustBeUniqueRule(slug, parentId, categoryCounter));
+
+            if (name != _name)
+                CheckRule(new CategoryNameMustBeUniqueRule(name, parentId, categoryCounter));
+
+            _slug = slug;
+            _name = name;
+            _description = description;
+            _parentId = parentId;
+            _updatedAt = SystemClock.Now;
+
+            AddDomainEvent(new CategoryEditedDomainEvent(
+                Id,
+                _slug,
+                _name,
+                _description,
+                _parentId,
+                _updatedAt.Value
+            ));
+        }
+
         public static Category CreateNew(
             CategoryId id,
             string slug,
