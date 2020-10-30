@@ -43,6 +43,8 @@ namespace TinyCommerce.Modules.Catalog.Application.Categories.GetCategoriesForSe
                 FROM categoryTree;
             ");
 
+            // TODO: Exclude root categories too!
+
             builder.Where("c1.parent_id = ct.id");
 
             if (query.ExcludedCategories.Any())

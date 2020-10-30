@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Initialization;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +11,7 @@ namespace TinyCommerce.Database.Migrator
 {
     class Program
     {
-        private static string Profile { get; set; }
+        private static readonly CliOptions Options = new CliOptions();
 
         static int Main(string[] args)
         {
@@ -30,20 +31,16 @@ namespace TinyCommerce.Database.Migrator
 
             logger.Information("Starting migration...");
 
-            if (args.Length < 1)
-            {
-                logger.Error("Invalid arguments. You must provide connection string.");
-                logger.Information("Migration stopped.");
-                return -1;
-            }
-
-            var connectionString = args[0];
-            var serviceProvider = CreateServices(connectionString);
+            var serviceProvider = CreateServices(Options.ConnectionString);
 
             using (var scope = serviceProvider.CreateScope())
             {
                 var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
-                runner.MigrateUp();
+
+                if (Options.MigrateUp)
+                {
+                    runner.MigrateUp();
+                }
             }
 
             logger.Information("Migration done!");
@@ -51,18 +48,28 @@ namespace TinyCommerce.Database.Migrator
             return 0;
         }
 
-        private static void ParseOptions(string[] args)
+        private static List<string> ParseOptions(string[] args)
         {
             var optionSet = new OptionSet
             {
+                {"cs|connectionString=", "database connection string", v => { Options.ConnectionString = v; }},
+                {"p|profile=", "fluent migrator profile", v => { Options.Profile = v; }},
+                {"up", "migrate up", v => { Options.MigrateUp = v != null; }},
+                {"down", "migrate down", v => { Options.MigrateDown = v != null; }},
+                {"h|help", "prints the help", v => { Options.ShouldShowHelp = v != null; }},
                 {
-                    "p|profile=",
-                    "fluent migrator profile",
-                    v => { Profile = v; }
-                }
+                    "task=|t=",
+                    "The task you want FluentMigrator to perform. Available choices are: migrate:up, migrate (same as migrate:up), migrate:down, rollback, rollback:toversion, rollback:all, validateversionorder, listmigrations. Default is 'migrate'.",
+                    v => { Options.Task = v; }
+                },
             };
 
-            optionSet.Parse(args);
+            return optionSet.Parse(args);
+        }
+
+        private static void ShowHelp(OptionSet optionSet)
+        {
+            optionSet.WriteOptionDescriptions(Console.Out);
         }
 
         private static IServiceProvider CreateServices(string connectionString, string profile = null)
@@ -74,12 +81,24 @@ namespace TinyCommerce.Database.Migrator
                         .WithGlobalConnectionString(connectionString)
                         .ScanIn(typeof(Migration1).Assembly).For.Migrations()
                 )
-                .Configure<RunnerOptions>(options =>
-                {
-                    options.Profile = Profile;
-                })
+                .Configure<RunnerOptions>(options => { options.Profile = Options.Profile; })
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 .BuildServiceProvider(false);
         }
+    }
+
+    public class CliOptions
+    {
+        public string Task { get; set; }
+
+        public string ConnectionString { get; set; }
+
+        public string Profile { get; set; }
+
+        public bool MigrateUp { get; set; }
+
+        public bool MigrateDown { get; set; }
+
+        public bool ShouldShowHelp { get; set; }
     }
 }

@@ -7702,3 +7702,21 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem; }
 
+.navbar.topbar {
+  z-index: 35;
+  margin-bottom: 1rem; }
+
+.header-categories {
+  background-color: #FAFAFA;
+  border-radius: 4px;
+  margin-bottom: 1.5rem; }
+
+.category-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.category-header__title {
+  font-size: 1.4rem;
+  font-weight: 300; }
+

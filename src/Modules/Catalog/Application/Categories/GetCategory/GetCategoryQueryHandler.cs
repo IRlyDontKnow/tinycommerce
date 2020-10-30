@@ -18,7 +18,8 @@ namespace TinyCommerce.Modules.Catalog.Application.Categories.GetCategory
         public async Task<CategoryDto> Handle(GetCategoryQuery query, CancellationToken cancellationToken)
         {
             var connection = _connectionFactory.GetOpenConnection();
-            var sql = $@"
+            var builder = new SqlBuilder();
+            var template = builder.AddTemplate($@"
                 SELECT
                     id AS {nameof(CategoryDto.Id)},
                     slug AS {nameof(CategoryDto.Slug)},
@@ -28,10 +29,20 @@ namespace TinyCommerce.Modules.Catalog.Application.Categories.GetCategory
                     created_at AS {nameof(CategoryDto.CreatedAt)},
                     updated_at AS {nameof(CategoryDto.UpdatedAt)}
                 FROM catalog.category
-                WHERE id = @CategoryId
-            ";
+                /**where**/
+            ");
 
-            return await connection.QueryFirstOrDefaultAsync<CategoryDto>(sql, new {query.CategoryId});
+            if (query.CategoryId.HasValue)
+            {
+                builder.Where("id = @CategoryId", new {query.CategoryId});
+            }
+
+            if (!string.IsNullOrEmpty(query.Slug))
+            {
+                builder.Where("slug = @Slug", new {query.Slug});
+            }
+
+            return await connection.QueryFirstOrDefaultAsync<CategoryDto>(template.RawSql, template.Parameters);
         }
     }
 }

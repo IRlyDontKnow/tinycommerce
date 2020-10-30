@@ -15,4 +15,19 @@
       <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Scripts\Catalog_Categories_Seed.sql" />
+      <Content Include="Scripts\0003_Categories_Seed.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Scripts\0002_Customers_Seed.sql" />
+      <Content Include="Scripts\0002_Customers_Seed.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Scripts\0001_ad.sql" />
+      <Content Include="Scripts\0001_Administrators_Seed.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

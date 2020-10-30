@@ -1,0 +1,7 @@
+﻿INSERT INTO catalog.category (id, slug, name, description, parent_id, created_at) VALUES ('ce5777e7-cf18-4b14-9a89-23ab77b6596b', 'camera-drones', 'Camera drones', null, '1dd97678-fce3-4674-9bc5-85848224ebc0', NOW());
+INSERT INTO catalog.category (id, slug, name, description, parent_id, created_at) VALUES ('1dd97678-fce3-4674-9bc5-85848224ebc0', 'camera-and-photo', 'Camera & Photo', null, '9b7e7305-c16a-448b-bbaf-5ac0f0f09b0f', NOW());
+INSERT INTO catalog.category (id, slug, name, description, parent_id, created_at) VALUES ('3207ee48-5182-4f6f-96f9-2539d4cb3516', 'digital-cameras', 'Digital Cameras', null, '1dd97678-fce3-4674-9bc5-85848224ebc0', NOW());
+INSERT INTO catalog.category (id, slug, name, description, parent_id, created_at) VALUES ('9b7e7305-c16a-448b-bbaf-5ac0f0f09b0f', 'electronics', 'Electronics', null, null, NOW());
+INSERT INTO catalog.category (id, slug, name, description, parent_id, created_at) VALUES ('e7848043-2928-4fc3-bef8-d90727aaaf05', 'camcorders', 'Camcorders', null, '9b7e7305-c16a-448b-bbaf-5ac0f0f09b0f', NOW());
+INSERT INTO catalog.category (id, slug, name, description, parent_id, created_at) VALUES ('8312893e-0365-43f5-874e-ad1bc9d98f11', 'root', 'Root', null, null, NOW());
+INSERT INTO catalog.category (id, slug, name, description, parent_id, created_at) VALUES ('89611706-7eeb-4c82-adfe-b232197a0f2d', 'mobile-phones', 'Mobile phones', null, '9b7e7305-c16a-448b-bbaf-5ac0f0f09b0f', NOW());

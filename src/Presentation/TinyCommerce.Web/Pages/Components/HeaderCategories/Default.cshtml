@@ -1,0 +1,33 @@
+﻿@model TinyCommerce.Web.ViewComponents.HeaderCategoriesViewModel
+
+@if (Model.RootCategories.Any())
+{
+    <div class="navbar header-categories">
+        @foreach (var rootCategory in Model.RootCategories)
+        {
+            @if (rootCategory.Children.Any())
+            {
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" asp-page="/Catalog/Category/Index" asp-route-slug="@rootCategory.Slug">
+                        @rootCategory.Name
+                    </a>
+                    @if (rootCategory.Children.Any())
+                    {
+                        <div class="navbar-dropdown">
+                            @foreach (var childCategory in rootCategory.Children)
+                            {
+                                <a class="navbar-item" asp-page="/Catalog/Category/Index" asp-route-slug="@childCategory.Slug">
+                                    @childCategory.Name
+                                </a>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <a class="navbar-item" asp-page="/Catalog/Category/Index" asp-route-slug="@rootCategory.Slug">@rootCategory.Name</a>
+            }
+        }
+    </div>
+}

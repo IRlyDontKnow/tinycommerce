@@ -1,0 +1,1 @@
+﻿INSERT INTO customers.customer (id, email, password, first_name, last_name, registration_date) VALUES ('0e220929-43ca-46f4-98bd-56abc72d59d9', 'john@squadore.com', 'AEV5D2ntoYViopgDhFJwQyOmZOsY5ZziaGv6FiUZT1xusq2XrNa9Tuv7qmyzSPsK9g==', 'John', 'Doe', NOW());

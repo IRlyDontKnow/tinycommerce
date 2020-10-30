@@ -1,3 +1,10 @@
 ﻿@charset "utf-8";
 @import "~bulma/bulma";
 @import "variables.scss";
+
+// Components
+@import "components/topbar.scss";
+@import "components/header-categories.scss";
+
+// Pages
+@import "pages/category.scss";
