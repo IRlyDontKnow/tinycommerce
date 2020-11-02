@@ -1,0 +1,52 @@
+﻿@page "/admin/catalog/brands"
+@model TinyCommerce.Web.Areas.Admin.Pages.Catalog.Brands.Index
+@{
+    ViewData["PageTitle"] = "Brands";
+}
+
+@section PageToolbar
+{
+    <a class="button is-primary" asp-area="Admin" asp-page="/Catalog/Brands/Create">
+        Create
+    </a>
+}
+
+<vc:datagrid></vc:datagrid>
+
+<div class="box">
+    <table class="table is-striped is-fullwidth is-hoverable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Slug</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.Brands.Items.Any())
+        {
+            @foreach (var brand in Model.Brands.Items)
+            {
+                <tr>
+                    <td>@brand.Name</td>
+                    <td>@brand.Slug</td>
+                    <td>
+                        <a class="button is-small is-link" asp-area="Admin" asp-page="/Catalog/Brands/Edit" asp-route-brandId="@brand.Id">
+                            Edit
+                        </a>
+                        <a class="button is-small is-danger" href="">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td class="has-text-centered" colspan="3">No data available</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

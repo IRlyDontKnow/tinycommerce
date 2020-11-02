@@ -22,6 +22,7 @@ namespace TinyCommerce.Modules.Catalog.Infrastructure.Purging.PurgeModule
             await PurgeHelper.PurgeAsync(connection, new[]
             {
                 "catalog.category",
+                "catalog.brand",
                 "catalog.outbox_messages"
             });
 

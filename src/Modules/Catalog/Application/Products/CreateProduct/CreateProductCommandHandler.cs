@@ -6,7 +6,7 @@ using TinyCommerce.Modules.Catalog.Domain.Products;
 
 namespace TinyCommerce.Modules.Catalog.Application.Products.CreateProduct
 {
-    public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
+    internal class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
     {
         private readonly IProductRepository _productRepository;
 

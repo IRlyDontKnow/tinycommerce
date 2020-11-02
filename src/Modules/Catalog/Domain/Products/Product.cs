@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TinyCommerce.BuildingBlocks.Domain;
+using TinyCommerce.Modules.Catalog.Domain.Brands;
 
 namespace TinyCommerce.Modules.Catalog.Domain.Products
 {
@@ -17,6 +18,6 @@ namespace TinyCommerce.Modules.Catalog.Domain.Products
         private string _shortDescription;
         private string _fullDescription;
         // private List<ProductImage> _images;
-        private List<ProductTranslation> _translations;
+        private BrandId _brandId;
     }
 }

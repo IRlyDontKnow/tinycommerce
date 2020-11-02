@@ -72,7 +72,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Areas\Admin\Pages\Catalog" />
       <Folder Include="logs" />
       <Folder Include="TagHelper\Admin" />
     </ItemGroup>

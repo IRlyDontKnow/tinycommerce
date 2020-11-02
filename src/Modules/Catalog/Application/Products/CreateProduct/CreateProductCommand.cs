@@ -1,9 +1,12 @@
-﻿using TinyCommerce.Modules.Catalog.Application.Contracts;
+﻿using System;
+using TinyCommerce.Modules.Catalog.Application.Contracts;
 
 namespace TinyCommerce.Modules.Catalog.Application.Products.CreateProduct
 {
     public class CreateProductCommand : CommandBase
     {
+     
+        public Guid ProductId { get; }
         
     }
 }
